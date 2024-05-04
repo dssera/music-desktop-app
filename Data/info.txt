@@ -1,0 +1,3 @@
+﻿TODO:
+1. Entitites 
+2. Repo-s
