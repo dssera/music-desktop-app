@@ -7,7 +7,13 @@ using System.Threading.Tasks;
 
 namespace Data.Entities
 {
-    internal class GenreEntity : BaseEntity
+    public class GenreEntity : BaseEntity
     {
+        public GenreEntity(long id, string name) 
+        { 
+            Id= id;
+            Name= name;
+        }
+        public string Name { get; set; }
     }
 }

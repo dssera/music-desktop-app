@@ -1,3 +1,125 @@
-﻿TODO:
-1. Entitites 
-2. Repo-s
+﻿Нужно написать репы так чтобы сохранять консистентность БД
+Например Схема гворит что Song сама по себе не существует, только при наличии ссылки в таблице SongsArtists
+Получается что это единая транзакция? Создать песню и Создать запись в таблице SongsArtists
+ТУТ ЗАКОНЧИЛ видимо нужно почитать про транзакции
+
+Нам нужен единный интерфейс взаимодейтсвия - никаких двуяких хуйнь
+Соответсвенно давай просто реализуем эти вещи прямо в репах для песен напрмиер
+
+Должен ли тогда вообще SongRepository реализоыввать метод AddSong?? ПУсть может но с пробрасыванием id артиста
+С дргуой стороны  у нас есть методы типа GetArtistsListBySongID и его мне надо засунуть в SongRepository??
+Ну хуйня какая то
+А его можно засунуть в  UserRepository!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! THE ANSWERRR
+Я ПРОСТО РАЗМАЖУ ЭТИ МЕТОДЫ ПО СУЩЕТСВУЮЩИМ РЕПАМ ПРИ ЭТОИ МЕНЯЯ методы по типу AddSong, чтобы сделать эту операцию мне нужно указать id 
+Писать ли отдельнй интерфесй для этого? Как назвать какие етоды содержит?
+AddItemTo
+RemoveItemFrom
+GetItems1ByItem2Id
+GetItems2ByItem1Id
+
+Получается 3 интерфейса:
+1) BaseCRUDRepo
+2) ImperfectCRUDRepo }
+                     } -> AssocRepo
+3) AssocRepo         }
+А могу написать без интерфейсов? Ну могу, но получается эти репы не будут реализовывать IRepositoryCRUD
+
+А если поступать как мы поступали раньше?
+Написать отдельные репы -> двойественность или сложная логика с транзакциями
+
+ДА БУДЕТ НАСЛЕДУЕМЫЙ ОТ БАЗОВОГОРЕПОИНТЕРФЕСЙА ИНТЕРФЕЙС КОТОРЫЙ ПЕРЕОПРЕДЕЛЯЕТ МЕТОД Add `
+
+
+
+var repo = new ArtistsSongsRepository()
+List<SongEntity> songsList = repo.GetSongsListByArtistID(id: artistId)
+List<UserEntity> usersList = repo.GetArtistsListBySongID(id: songId)
+
+bool success = repo.AddSongToUser()
+bool success1 = repo.RemoveSongFromUser() - which means delete song at all
+Получаем соответсенно всех пользователей / все песни которые относятся к переданному id
+=================================
+ArtistsAlbumsRepo
+	artist
+		AddUser
+		DeleteUser -> delete assoc row  (CASCADE)
+		
+	album
+		AddAlbum
+		DeleteAlbum - > delete assoc row
+	AddUserToAlbum
+	DeleteUserFromAlbum
+
+ArtistsSongsRepo
+	artist -> delete assoc row + -> delete all user' songs (transaction on service layer)
+		Add
+		Delete
+	song -> delete assoc row
+		Add
+		Delete
+	AddSongToArtist
+	DeleteSongFromUser
+
+GenresSongsRepo
+	song
+		Add
+		Delete
+	genre
+		Add
+		Delete
+	AddGenreToSong
+	DeleteGenreFromSong
+
+SongsPlaylistsRepo
+	Song
+		Add
+		Delete
+	Playlist
+		Add
+		Delete
+	AddSongToPlaylist
+	DeleteSongFromPlaylist
+
+Songs and Albums:
+	delete album means delete songs
+	delete playlist doesn't mean delete songs
+	delete artist means delete artist' songs. Sooo this is the transaction
+
+
+
+
+QUESTIONS:
+	Это нормально что id будут идти не по порядку?
+	Например 1 2 3 10 11..
+	Или СУБД должна сама двигать айдишники? Если да, как сделать это в постгре
+
+
+	Коллекция в репах
+
+TODO:
+	ORDERED:
+		1. write and test song repo 
+			Энтити для ассоц таблиц нет
+			Репы для ассоц таблиц есть 
+		2. repaet with all repos
+		3. Services? or smth else?
+		4. UI
+	UNORDERED
+		сделай тайтлы юниками
+		
+		test song repo [DONE]
+		test user repo?
+		test roll repo?
+		test playlist repo?
+		test genre repo?
+		test album repo?
+
+		write for assoc tables
+
+
+SOLUTIONS:
+	method GetAll: list<T>
+	the problem is actuall when database is large. And RAM is not enough
+	1. пакетной выборки данных 
+	2. отложенной загрузки
+	3. Limit

@@ -15,7 +15,7 @@ namespace Domain.Services
 
         public SongEntity GetSongById(int id)
         {
-            return _songRepository.Get(id);
+            return _songRepository.GetById(id);
         }
 
 

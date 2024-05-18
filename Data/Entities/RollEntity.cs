@@ -7,7 +7,13 @@ using System.Threading.Tasks;
 
 namespace Data.Entities
 {
-    internal class RollEntity : BaseEntity
+    public class RollEntity : BaseEntity
     {
+        public RollEntity(long id, string name) 
+        {
+            Id= id;
+            Name = name;
+        }
+        public string Name { get; set; }
     }
 }

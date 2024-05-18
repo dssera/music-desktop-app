@@ -1,4 +1,5 @@
-﻿using Data.Entities.Abstract;
+﻿using Data.Entities;
+using Data.Entities.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +10,15 @@ namespace Data.Repositories.Abstract
 {
     public interface IRepositoryCRUD<T> where T : BaseEntity
     {
-        // which collection should I do as repo collection?
-        List<T> GetAll();
-        void Create(T item);
-        T Get(int id);
-        void Update(T old, T @new);
-        void Delete(int id);
+        List<T>? GetCollection(int limit, int offset);
+        bool Add(T item);
+        T? GetById(int id);
+        bool Update(T item);
+        bool Delete(int id);
+    }
 
-
-        
+    public interface IRepositoryAssoc<T> where T : BaseEntity
+    {
+    
     }
 }
