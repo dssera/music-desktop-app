@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace DAO.Repositories
 {
-    public class GenreRepositury : IRepositoryCRUD<GenreEntity>
+    public class GenreRepository : IRepositoryCRUD<GenreEntity>
     {
         // https://habr.com/ru/articles/263033/
         private string _connectionString;
 
-        public GenreRepositury(string connectionString)
+        public GenreRepository(string connectionString)
         {
             _connectionString = connectionString;
         }

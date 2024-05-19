@@ -1,4 +1,5 @@
 ﻿using DAO.Repositories;
+using Data.Entities;
 
 string connectionString = @"Host = localhost;
             Port = 5432;
@@ -6,19 +7,11 @@ string connectionString = @"Host = localhost;
             User Id = postgres;
             Password = 12345;";
 var songRepository = new SongRepository(connectionString);
+var genreRepository = new GenreRepository(connectionString);
+var songGenreRepo = new SongsGenresRepository(connectionString);
+var userRepo = new UserRepository(connectionString);
+var rollRepo = new RollRepository(connectionString);
 
-var data = songRepository.GetCollection();
-//foreach (var item in data)
-//{
-//    Console.WriteLine(item.Title);
-//}
-var item = songRepository.GetById(1);
-Console.WriteLine(item?.Title);
-if (data is not null)
-{
-    foreach (var song in data)
-    {
-        Console.WriteLine(song.Title);
-    }
-}
+
+
 
