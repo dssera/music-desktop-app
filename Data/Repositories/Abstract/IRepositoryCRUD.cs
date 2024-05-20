@@ -12,9 +12,9 @@ namespace Data.Repositories.Abstract
     {
         List<T>? GetCollection(int limit, int offset);
         bool Add(T item);
-        T? GetById(int id);
+        T? GetById(long id);
         bool Update(T item);
-        bool Delete(int id);
+        bool Delete(long id);
     }
 
     public interface IRepositoryAssoc<T> where T : BaseEntity

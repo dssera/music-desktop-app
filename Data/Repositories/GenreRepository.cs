@@ -18,7 +18,7 @@ namespace DAO.Repositories
         {
             _connectionString = connectionString;
         }
-        public bool Delete(int id)
+        public bool Delete(long id)
         {
             bool success = false;
             try
@@ -50,7 +50,7 @@ namespace DAO.Repositories
             catch (Exception ex) { Console.WriteLine($"Exception in {GetType()}.Add:" + ex.Message); }
             return success;
         }
-        public GenreEntity? GetById(int id)
+        public GenreEntity? GetById(long id)
         {
             try
             {

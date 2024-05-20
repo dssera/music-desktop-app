@@ -18,7 +18,7 @@ namespace DAO.Repositories
         {
             _connectionString = connectionString;
         }
-        public bool Delete(int id)
+        public bool Delete(long id)
         {
             bool success = false;
             try
@@ -56,7 +56,7 @@ namespace DAO.Repositories
 
             return success;
         }
-        public AlbumEntity? GetById(int id)
+        public AlbumEntity? GetById(long id)
         {
             try
             {
