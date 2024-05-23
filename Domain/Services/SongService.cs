@@ -6,17 +6,19 @@ namespace Domain.Services
 {
     public class SongService
     {
-        private IRepositoryCRUD<SongEntity> _songRepository;
+        private SongRepository _songRepository;
 
         public SongService(IRepositoryCRUD<SongEntity> _songRepository) 
         {
             this._songRepository = _songRepository;
         }
 
-        public SongEntity GetSongById(int id)
+        public SongEntity? GetSongById(int id)
         {
             return _songRepository.GetById(id);
         }
+
+        public List<SongEntity> 
 
 
         //void CreateSong(SongEntity song)

@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAO", "Data\DAO.csproj", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{5B600F6F-54D1-4348-ACDD-9AEDAE417A38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{258D1F72-DC43-4CD5-B2AD-228DC9DB660D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApp", "TestApp\TestApp.csproj", "{258D1F72-DC43-4CD5-B2AD-228DC9DB660D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

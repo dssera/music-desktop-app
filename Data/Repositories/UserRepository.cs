@@ -122,5 +122,26 @@ namespace DAO.Repositories
 
             return success;
         }
+        public UserEntity? GetByLogin(string login)
+        {
+            try
+            {
+                using var dataSource = NpgsqlDataSource.Create(_connectionString);
+                using var command = dataSource.CreateCommand("SELECT id, login, password, roll_id FROM public.users WHERE login = @Login");
+                command.Parameters.AddWithValue("Login", login);
+                using var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    return new UserEntity(reader.GetInt64(0),
+                        reader.GetString(1),
+                        reader.GetString(2),
+                        reader.GetInt32(3)
+                        );
+                }
+            }
+            catch (Exception ex) { Console.WriteLine($"Exception in {GetType()}.GetByLogin:" + ex.Message); }
+            return null;
+        }
     }
 }
