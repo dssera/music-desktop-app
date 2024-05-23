@@ -37,6 +37,10 @@
             this.textBoxFullNameInput = new System.Windows.Forms.TextBox();
             this.textBoxEmailInput = new System.Windows.Forms.TextBox();
             this.buttonRegister = new System.Windows.Forms.Button();
+            this.labelLogin = new System.Windows.Forms.Label();
+            this.labelPassword = new System.Windows.Forms.Label();
+            this.labelFullName = new System.Windows.Forms.Label();
+            this.labelEmail = new System.Windows.Forms.Label();
             this.groupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -122,11 +126,52 @@
             this.buttonRegister.UseVisualStyleBackColor = true;
             this.buttonRegister.Click += new System.EventHandler(this.button1_Click);
             // 
+            // labelLogin
+            // 
+            this.labelLogin.AutoSize = true;
+            this.labelLogin.Location = new System.Drawing.Point(278, 132);
+            this.labelLogin.Name = "labelLogin";
+            this.labelLogin.Size = new System.Drawing.Size(44, 15);
+            this.labelLogin.TabIndex = 7;
+            this.labelLogin.Text = "Логин:";
+            this.labelLogin.Click += new System.EventHandler(this.label1_Click_1);
+            // 
+            // labelPassword
+            // 
+            this.labelPassword.AutoSize = true;
+            this.labelPassword.Location = new System.Drawing.Point(270, 161);
+            this.labelPassword.Name = "labelPassword";
+            this.labelPassword.Size = new System.Drawing.Size(52, 15);
+            this.labelPassword.TabIndex = 8;
+            this.labelPassword.Text = "Пароль:";
+            // 
+            // labelFullName
+            // 
+            this.labelFullName.AutoSize = true;
+            this.labelFullName.Location = new System.Drawing.Point(244, 190);
+            this.labelFullName.Name = "labelFullName";
+            this.labelFullName.Size = new System.Drawing.Size(78, 15);
+            this.labelFullName.TabIndex = 9;
+            this.labelFullName.Text = "Полное имя:";
+            // 
+            // labelEmail
+            // 
+            this.labelEmail.AutoSize = true;
+            this.labelEmail.Location = new System.Drawing.Point(278, 219);
+            this.labelEmail.Name = "labelEmail";
+            this.labelEmail.Size = new System.Drawing.Size(44, 15);
+            this.labelEmail.TabIndex = 10;
+            this.labelEmail.Text = "Почта:";
+            // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.labelEmail);
+            this.Controls.Add(this.labelFullName);
+            this.Controls.Add(this.labelPassword);
+            this.Controls.Add(this.labelLogin);
             this.Controls.Add(this.buttonRegister);
             this.Controls.Add(this.textBoxEmailInput);
             this.Controls.Add(this.textBoxFullNameInput);
@@ -155,5 +200,9 @@
         private TextBox textBoxFullNameInput;
         private TextBox textBoxEmailInput;
         private Button buttonRegister;
+        private Label labelLogin;
+        private Label labelPassword;
+        private Label labelFullName;
+        private Label labelEmail;
     }
 }

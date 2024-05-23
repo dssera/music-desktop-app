@@ -81,6 +81,31 @@ namespace DAO.Repositories
 
             return null;
         }
+        public PlaylistEntity? Get(long id, string title)
+        {
+            try
+            {
+                using var dataSource = NpgsqlDataSource.Create(_connectionString);
+                using var command = dataSource.CreateCommand("SELECT id, title, user_id, created, plays, songs_count FROM public.playlists WHERE id = @Id AND title = @Title");
+                command.Parameters.AddWithValue("Id", id);
+                command.Parameters.AddWithValue("Title", title);
+                using var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    return new PlaylistEntity(reader.GetInt64(0),
+                        reader.GetString(1),
+                        reader.GetInt64(2),
+                        reader.GetDateTime(3),
+                        reader.GetInt64(4),
+                        reader.GetInt32(5)
+                        );
+                }
+            }
+            catch (Exception ex) { Console.WriteLine($"Exception in {GetType()}.Get:" + ex.Message); }
+
+            return null;
+        }
 
         public List<PlaylistEntity>? GetCollection(int limit = 15, int offset = 0)
         {

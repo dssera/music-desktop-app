@@ -60,7 +60,7 @@ namespace DAO.Repositories
             {
 
                 using var dataSource = NpgsqlDataSource.Create(_connectionString);
-                using var command = dataSource.CreateCommand("SELECT u.id, u.login, u.password, u.roll_id FROM songs_artists AS sa " +
+                using var command = dataSource.CreateCommand("SELECT u.id, u.login, u.password, u.roll_id FROM artists_songs AS sa " +
                     "JOIN users AS u ON sa.artist_id = u.id WHERE sa.song_id = @SongId LIMIT @limit OFFSET @offset;");
                 command.Parameters.AddWithValue("limit", limit);
                 command.Parameters.AddWithValue("offset", offset);

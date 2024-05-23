@@ -114,6 +114,37 @@ namespace DAO.Repositories
 
             return songsList;
         }
+        public List<SongEntity>? GetCollection(string qTitle, int limit = 15, int offset = 0)
+        {
+            List<SongEntity>? songsList = null;
+            try
+            {
+                using var dataSource = NpgsqlDataSource.Create(_connectionString);
+                using var command = dataSource.CreateCommand("SELECT * FROM public.songs WHERE title = @Title LIMIT @limit OFFSET @offset");
+                command.Parameters.AddWithValue("limit", limit);
+                command.Parameters.AddWithValue("offset", offset);
+                command.Parameters.AddWithValue("Title", qTitle);
+                using var reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    songsList = new List<SongEntity>();
+                    while (reader.Read())
+                    {
+                        songsList.Add(new SongEntity(reader.GetInt32(0),
+                            reader.IsDBNull(1) ? null : reader.GetInt32(1),
+                            reader.GetDateTime(2),
+                            reader.GetInt64(3),
+                            reader.GetBoolean(4),
+                            reader.GetTimeSpan(5),
+                            reader.GetString(6))
+                            );
+                    }
+                }
+            }
+            catch (Exception ex) { Console.WriteLine($"Exception in {GetType()}.GetCollection:" + ex.Message); }
+
+            return songsList;
+        }
         public bool Update(SongEntity song)
         {
             bool success = false;

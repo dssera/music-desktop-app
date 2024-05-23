@@ -6,19 +6,26 @@ namespace Domain.Services
 {
     public class SongService
     {
-        private SongRepository _songRepository;
+        private SongRepository _repository;
 
-        public SongService(IRepositoryCRUD<SongEntity> _songRepository) 
+        public SongService(string connectionString) 
         {
-            this._songRepository = _songRepository;
+            _repository = new SongRepository(connectionString);
         }
 
         public SongEntity? GetSongById(int id)
         {
-            return _songRepository.GetById(id);
+            return _repository.GetById(id);
         }
 
-        public List<SongEntity> 
+        public List<SongEntity>? GetSongs(int limit=5, int offset=0)
+        {
+            return _repository.GetCollection(limit, offset);
+        }
+        public List<SongEntity>? GetSongs(string qTitle, int limit = 5, int offset = 0)
+        {
+            return _repository.GetCollection(qTitle, limit, offset);
+        }
 
 
         //void CreateSong(SongEntity song)

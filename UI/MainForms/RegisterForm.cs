@@ -12,16 +12,17 @@ namespace UI
         private Service _service;
         public RegisterForm()
         {
-            InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
             _service = new Service(@"Host = localhost;
                     Port = 5432;
                     Database = music-service-coursework;
                     User Id = postgres;
                     Password = 12345;");
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -30,11 +31,22 @@ namespace UI
             string password = textBoxPasswordInput.Text;
             string fullName = textBoxFullNameInput.Text;
             string email = textBoxEmailInput.Text;
+            var roll = 2;
+            if (radioButtonAsArtist.Checked) roll = 3;
 
+            // validations
+            // ...
+
+            _service.Register(login, password, fullName, email, roll);
 
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
         {
 
         }

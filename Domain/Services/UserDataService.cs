@@ -18,9 +18,9 @@ namespace Domain.Services
             _repository= new UserDataRepository(connectionString);
         }
 
-        public bool Create(string? fullName, string? email)
+        public bool Add(long userId, string? fullName, string? email)
         {
-            return _repository.Add(new UserDataEntity(-1, -1, fullName, email));
+            return _repository.Add(new UserDataEntity(-1, userId, fullName, email));
         }
         public UserDataEntity? GetById(long id)
         {

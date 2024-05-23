@@ -39,10 +39,10 @@ namespace UI.MainForms
             else
             {
                 var user = _service.GetFullUserByLogin(_user.Login);
-                var form = new ListenerScreenForm();
-                Visible = false;
-                form.ShowDialog();
-                Dispose();
+                var form = new ListenerScreenForm(user);
+                //Visible = false;
+                //form.ShowDialog();
+                //Dispose();
 
             }
         }

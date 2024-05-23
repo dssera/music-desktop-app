@@ -50,6 +50,43 @@ namespace DAO.Repositories
 
             return songsList;
         }
+        public List<SongEntity>? GetSongsByPlaylist(long userId, string playlistTitle, int limit = 15, int offset = 0)
+        {
+
+            List<SongEntity>? songsList = null;
+            try
+            {
+                // SELECT s.id, s.album_id, s.created, s.plays, s.is_published, s.duration, s.title FROM public.songs s JOIN public.songs_playlists sp ON sp.song_id = s.id JOIN public.playlists p ON p.id = sp.playlist_id WHERE p.title = 'default_playlist' AND p.user_id = 9 LIMIT @limit OFFSET @offset;
+                using var dataSource = NpgsqlDataSource.Create(_connectionString);
+                using var command = dataSource.CreateCommand("SELECT s.id, s.album_id, s.created, s.plays, s.is_published, s.duration, s.title FROM public.songs s " +
+                    "JOIN public.songs_playlists sp ON sp.song_id = s.id " +
+                    "JOIN public.playlists p ON p.id = sp.playlist_id " +
+                    "WHERE p.title = @PlaylistTitle AND p.user_id = @UserId LIMIT @limit OFFSET @offset;");
+                command.Parameters.AddWithValue("limit", limit);
+                command.Parameters.AddWithValue("offset", offset);
+                command.Parameters.AddWithValue("UserId", userId);
+                command.Parameters.AddWithValue("PlaylistTitle", playlistTitle);
+                using var reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    songsList = new List<SongEntity>();
+                    while (reader.Read())
+                    {
+                        songsList.Add(new SongEntity(reader.GetInt32(0),
+                                reader.IsDBNull(1) ? null : reader.GetInt32(1),
+                                reader.GetDateTime(2),
+                                reader.GetInt64(3),
+                                reader.GetBoolean(4),
+                                reader.GetTimeSpan(5),
+                                reader.GetString(6))
+                            );
+                    }
+                }
+            }
+            catch (Exception ex) { Console.WriteLine($"Exception in {GetType()}.GetCollection:" + ex.Message); }
+
+            return songsList;
+        }
         public List<PlaylistEntity>? GetPlaylistsBySong(long songId, int limit = 15, int offset = 0)
         {
 

@@ -13,7 +13,7 @@ namespace UI
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new LoginForm());
+            Application.Run(new ListenerScreenForm(new Domain.User(9, "new_user", "log", 2, "log", "log")));
         }
     }
 }

@@ -13,12 +13,21 @@ namespace Domain.Services
         private UserService userService;
         private UserDataService userDataService;
         private RollService rollService;
+        private SongService songService;
+        private SongsArtistsService songsArtistsService;
+        private PlaylistService playlistService;
+        private SongsPlaylistsService songsPlaylistsService;
+
 
         public Service(string connectionString)
         {
             userService = new UserService(connectionString);
             userDataService = new UserDataService(connectionString);
             rollService = new RollService(connectionString);
+            songService = new SongService(connectionString);
+            songsArtistsService = new SongsArtistsService(connectionString);
+            playlistService = new PlaylistService(connectionString);
+            songsPlaylistsService = new SongsPlaylistsService(connectionString);
 
         }
 
@@ -26,8 +35,13 @@ namespace Domain.Services
         { 
             if (userService.IsLoginExist(login)) return null;
             userService.Create(login, password, rollId);
+
             var user = userService.GetByLogin(login);
-            if (user != null) userDataService.Create(fullName, email);
+            if (user != null)
+            {
+                userDataService.Add(user.Id, fullName, email);
+                playlistService.Add(new PlaylistEntity(-1, "default_playlist", user.Id, DateTime.Now, 0, 0)); 
+            }
             return user;
         }
 
@@ -52,6 +66,23 @@ namespace Domain.Services
                 return user;
             }
             return null;
+        }
+        public List<SongEntity>? GetSongs(int limit=5, int offset=0)
+        {
+            return songService.GetSongs(limit, offset);
+        }
+        public List<SongEntity>? GetSongs(string qTitle, int limit = 5, int offset = 0)
+        {
+            return songService.GetSongs(qTitle, limit, offset);
+        }
+        public List<UserEntity>? GetArtistsBySong(long id)
+        {
+            return songsArtistsService.GetArtistsBySong(id);
+        }
+
+        public List<SongEntity>? GetSongsByPlaylist(long userId, string playlistTitle)
+        {
+            return songsPlaylistsService.GetSongsByPlaylist(userId, playlistTitle);
         }
     }
 }
