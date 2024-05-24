@@ -33,24 +33,34 @@ namespace UI
         private void ListenerScreenForm_Load(object sender, EventArgs e)
         {
 
-            // separate methods
-            List<SongEntity>? songs = _service.GetSongsByPlaylist(_user.Id, "default_playlist");
-            if (songs == null)
-                return;
-            foreach (SongEntity song in songs)
+            // your songs tab
+            var userSongs = _service.GetSongsByPlaylist(_user.Id, "default_playlist");
+            if (userSongs != null)
             {
-                string artists = GetArtistsString(song);
-                dataGridViewUserSongs.Rows.Add(song.Title, artists, song.Duration);
+                foreach (SongEntity song in userSongs)
+                {
+                    string artists = GetArtistsString(song);
+                    dataGridViewUserSongs.Rows.Add(song.Title, artists, song.Duration);
+                }
             }
-
-            // separate
-            var songs_ = _service.GetSongs(100);
-            if (songs_ == null)
-                return;
-            foreach (var song in songs_)
+            // all songs tab
+            var allSongs = _service.GetSongs(100);
+            if (allSongs != null)
             {
-                string artists = GetArtistsString(song);
-                dataGridViewAllSongs.Rows.Add(song.Title, artists, song.Duration);
+                foreach (var song in allSongs)
+                {
+                    string artists = GetArtistsString(song);
+                    dataGridViewAllSongs.Rows.Add(song.Title, artists, song.Duration);
+                }
+            }
+            // playlists tab
+            var playlists = _service.GetPlaylistsByUser(_user.Id);
+            if (playlists != null)
+            {
+                foreach (var playlist in playlists)
+                {
+                    dataGridViewPlaylists.Rows.Add(playlist.Title, playlist.SongsCount);
+                }
             }
         }
 
@@ -81,7 +91,7 @@ namespace UI
 
         private void tabPage1_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("sdsd");
         }
 
         private void dataGridViewUserSongs_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -122,7 +132,22 @@ namespace UI
 
         private void dataGridViewAllSongs_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            // button add song in all songs
+            var senderGrid = (DataGridView)sender;
 
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                //TODO - Button Clicked - Execute Code Here
+
+                var title = dataGridViewAllSongs.Rows[e.RowIndex].Cells[0].Value.ToString();
+                if (title == null)
+                    return;
+                var song = _service.GetSongByTitle(title);
+                var playlist = _service.GetPlaylistByTitle(_user.Id, "default_playlist");
+                if (song == null || playlist == null)
+                    return;
+                _service.AddSongToPlaylist(song.Id, playlist.Id);
+            }
         }
 
         private void tabControl1_MouseEnter(object sender, EventArgs e)

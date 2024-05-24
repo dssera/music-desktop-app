@@ -86,7 +86,7 @@ namespace DAO.Repositories
             try
             {
                 using var dataSource = NpgsqlDataSource.Create(_connectionString);
-                using var command = dataSource.CreateCommand("SELECT id, title, user_id, created, plays, songs_count FROM public.playlists WHERE id = @Id AND title = @Title");
+                using var command = dataSource.CreateCommand("SELECT id, title, user_id, created, plays, songs_count FROM public.playlists WHERE user_id = @Id AND title = @Title");
                 command.Parameters.AddWithValue("Id", id);
                 command.Parameters.AddWithValue("Title", title);
                 using var reader = command.ExecuteReader();
@@ -105,6 +105,32 @@ namespace DAO.Repositories
             catch (Exception ex) { Console.WriteLine($"Exception in {GetType()}.Get:" + ex.Message); }
 
             return null;
+        }
+        public List<PlaylistEntity>? GetPlaylistsByUser(long userId)
+        {
+            List<PlaylistEntity>? playlistsList = null;
+            try
+            {
+                using var dataSource = NpgsqlDataSource.Create(_connectionString);
+                using var command = dataSource.CreateCommand("SELECT id, title, user_id, created, plays, songs_count FROM public.playlists WHERE user_id = @UserId");
+                command.Parameters.AddWithValue("UserId", userId);
+                using var reader = command.ExecuteReader();
+
+                playlistsList = new List<PlaylistEntity>();
+                while (reader.Read())
+                {
+                    playlistsList.Add(new PlaylistEntity(reader.GetInt64(0),
+                        reader.GetString(1),
+                        reader.GetInt64(2),
+                        reader.GetDateTime(3),
+                        reader.GetInt64(4),
+                        reader.GetInt32(5)
+                        ));
+                }
+            }
+            catch (Exception ex) { Console.WriteLine($"Exception in {GetType()}.Get:" + ex.Message); }
+
+            return playlistsList;
         }
 
         public List<PlaylistEntity>? GetCollection(int limit = 15, int offset = 0)

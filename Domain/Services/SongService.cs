@@ -17,7 +17,10 @@ namespace Domain.Services
         {
             return _repository.GetById(id);
         }
-
+        public SongEntity? GetSongByTitle(string title)
+        {
+            return _repository.GetByTitle(title);
+        }
         public List<SongEntity>? GetSongs(int limit=5, int offset=0)
         {
             return _repository.GetCollection(limit, offset);

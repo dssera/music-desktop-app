@@ -25,5 +25,9 @@ namespace Domain.Services
         {
             return _repository.Get(userId, playlistTitle);
         }
+        public List<PlaylistEntity>? GetPlaylistsByUser(long userId)
+        {
+            return _repository.GetPlaylistsByUser(userId);
+        }
     }
 }

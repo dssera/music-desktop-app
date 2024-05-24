@@ -83,6 +83,31 @@ namespace DAO.Repositories
 
             return null;
         }
+        public SongEntity? GetByTitle(string title)
+        {
+            try
+            {
+                using var dataSource = NpgsqlDataSource.Create(_connectionString);
+                using var command = dataSource.CreateCommand("SELECT id, album_id, created, plays, is_published, duration, title FROM public.songs WHERE title = @Title");
+                command.Parameters.AddWithValue("Title", title);
+                using var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    return new SongEntity(reader.GetInt32(0),
+                        reader.IsDBNull(1) ? null : reader.GetInt32(1),
+                        reader.GetDateTime(2),
+                        reader.GetInt64(3),
+                        reader.GetBoolean(4),
+                        reader.GetTimeSpan(5),
+                        reader.GetString(6)
+                        );
+                }
+            }
+            catch (Exception ex) { Console.WriteLine($"Exception in {GetType()}.GetById:" + ex.Message); }
+
+            return null;
+        }
 
         public List<SongEntity>? GetCollection(int limit=15, int offset=0)
         {

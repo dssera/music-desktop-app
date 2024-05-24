@@ -75,6 +75,10 @@ namespace Domain.Services
         {
             return songService.GetSongs(qTitle, limit, offset);
         }
+        public SongEntity? GetSongByTitle(string title)
+        {
+            return songService.GetSongByTitle(title);
+        }
         public List<UserEntity>? GetArtistsBySong(long id)
         {
             return songsArtistsService.GetArtistsBySong(id);
@@ -82,7 +86,21 @@ namespace Domain.Services
 
         public List<SongEntity>? GetSongsByPlaylist(long userId, string playlistTitle)
         {
-            return songsPlaylistsService.GetSongsByPlaylist(userId, playlistTitle);
+            var playlist = playlistService.GetPlaylist(userId, playlistTitle);
+            songsPlaylistsService.GetSongsByPlaylist(playlist.Id);
+            return songsPlaylistsService.GetSongsByPlaylist(playlist.Id);
+        }
+        public bool AddSongToPlaylist(long songId, long playlistId)
+        {
+            return songsPlaylistsService.AddSongToPlaylist(songId, playlistId);
+        }
+        public PlaylistEntity? GetPlaylistByTitle(long userId, string title)
+        {
+            return playlistService.GetPlaylist(userId, title);
+        }
+        public List<PlaylistEntity>? GetPlaylistsByUser(long userId)
+        {
+            return playlistService.GetPlaylistsByUser(userId);
         }
     }
 }
