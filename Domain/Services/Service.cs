@@ -102,5 +102,9 @@ namespace Domain.Services
         {
             return playlistService.GetPlaylistsByUser(userId);
         }
+        public bool AddPlaylist(PlaylistEntity playlist)
+        {
+            return playlistService.Add(playlist);
+        }
     }
 }

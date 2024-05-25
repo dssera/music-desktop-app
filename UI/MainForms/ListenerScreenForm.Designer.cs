@@ -49,27 +49,34 @@
             this.textBoxSearchAllSongs = new System.Windows.Forms.TextBox();
             this.labelAllSongs = new System.Windows.Forms.Label();
             this.tabPagePlaylists = new System.Windows.Forms.TabPage();
+            this.buttonAddSong = new System.Windows.Forms.Button();
             this.buttonAddPlaylist = new System.Windows.Forms.Button();
             this.labelYourPlaylists = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewPlaylistSongs = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewButtonColumn3 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dataGridViewButtonColumn2 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dataGridViewPlaylists = new System.Windows.Forms.DataGridView();
             this.ColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSongsCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPlay = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ColumnChange = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ColumnDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabPageAlbums = new System.Windows.Forms.TabPage();
             this.tabPageProfile = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageYourSongs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUserSongs)).BeginInit();
             this.tabPageAllSongs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAllSongs)).BeginInit();
             this.tabPagePlaylists.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlaylistSongs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlaylists)).BeginInit();
+            this.tabPageProfile.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -82,7 +89,7 @@
             this.tabControl1.Location = new System.Drawing.Point(4, 5);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(912, 444);
+            this.tabControl1.Size = new System.Drawing.Size(1003, 444);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tabControl1.TabIndex = 0;
             this.tabControl1.MouseEnter += new System.EventHandler(this.tabControl1_MouseEnter);
@@ -96,7 +103,7 @@
             this.tabPageYourSongs.Location = new System.Drawing.Point(4, 24);
             this.tabPageYourSongs.Name = "tabPageYourSongs";
             this.tabPageYourSongs.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageYourSongs.Size = new System.Drawing.Size(904, 416);
+            this.tabPageYourSongs.Size = new System.Drawing.Size(995, 416);
             this.tabPageYourSongs.TabIndex = 0;
             this.tabPageYourSongs.Text = "Ваши песни";
             this.tabPageYourSongs.UseVisualStyleBackColor = true;
@@ -181,7 +188,7 @@
             this.tabPageAllSongs.Location = new System.Drawing.Point(4, 24);
             this.tabPageAllSongs.Name = "tabPageAllSongs";
             this.tabPageAllSongs.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAllSongs.Size = new System.Drawing.Size(904, 416);
+            this.tabPageAllSongs.Size = new System.Drawing.Size(995, 416);
             this.tabPageAllSongs.TabIndex = 1;
             this.tabPageAllSongs.Text = "Все песни";
             this.tabPageAllSongs.UseVisualStyleBackColor = true;
@@ -199,7 +206,7 @@
             this.dataGridViewAllSongs.Location = new System.Drawing.Point(11, 87);
             this.dataGridViewAllSongs.Name = "dataGridViewAllSongs";
             this.dataGridViewAllSongs.RowTemplate.Height = 25;
-            this.dataGridViewAllSongs.Size = new System.Drawing.Size(547, 321);
+            this.dataGridViewAllSongs.Size = new System.Drawing.Size(658, 321);
             this.dataGridViewAllSongs.TabIndex = 11;
             this.dataGridViewAllSongs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAllSongs_CellContentClick);
             // 
@@ -259,21 +266,32 @@
             // 
             // tabPagePlaylists
             // 
+            this.tabPagePlaylists.Controls.Add(this.buttonAddSong);
             this.tabPagePlaylists.Controls.Add(this.buttonAddPlaylist);
             this.tabPagePlaylists.Controls.Add(this.labelYourPlaylists);
-            this.tabPagePlaylists.Controls.Add(this.dataGridView2);
+            this.tabPagePlaylists.Controls.Add(this.dataGridViewPlaylistSongs);
             this.tabPagePlaylists.Controls.Add(this.dataGridViewPlaylists);
             this.tabPagePlaylists.Location = new System.Drawing.Point(4, 24);
             this.tabPagePlaylists.Name = "tabPagePlaylists";
             this.tabPagePlaylists.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPagePlaylists.Size = new System.Drawing.Size(904, 416);
+            this.tabPagePlaylists.Size = new System.Drawing.Size(995, 416);
             this.tabPagePlaylists.TabIndex = 2;
             this.tabPagePlaylists.Text = "Плейлисты";
             this.tabPagePlaylists.UseVisualStyleBackColor = true;
             // 
+            // buttonAddSong
+            // 
+            this.buttonAddSong.Location = new System.Drawing.Point(544, 18);
+            this.buttonAddSong.Name = "buttonAddSong";
+            this.buttonAddSong.Size = new System.Drawing.Size(179, 23);
+            this.buttonAddSong.TabIndex = 15;
+            this.buttonAddSong.Text = "Добавить песню в плейлист";
+            this.buttonAddSong.UseVisualStyleBackColor = true;
+            this.buttonAddSong.Click += new System.EventHandler(this.buttonAddSong_Click);
+            // 
             // buttonAddPlaylist
             // 
-            this.buttonAddPlaylist.Location = new System.Drawing.Point(201, 18);
+            this.buttonAddPlaylist.Location = new System.Drawing.Point(327, 18);
             this.buttonAddPlaylist.Name = "buttonAddPlaylist";
             this.buttonAddPlaylist.Size = new System.Drawing.Size(148, 23);
             this.buttonAddPlaylist.TabIndex = 14;
@@ -290,19 +308,20 @@
             this.labelYourPlaylists.TabIndex = 13;
             this.labelYourPlaylists.Text = "Ваши плейлисты:";
             // 
-            // dataGridView2
+            // dataGridViewPlaylistSongs
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewPlaylistSongs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPlaylistSongs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6,
+            this.dataGridViewButtonColumn3,
             this.dataGridViewButtonColumn2});
-            this.dataGridView2.Location = new System.Drawing.Point(355, 54);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 25;
-            this.dataGridView2.Size = new System.Drawing.Size(368, 355);
-            this.dataGridView2.TabIndex = 12;
+            this.dataGridViewPlaylistSongs.Location = new System.Drawing.Point(481, 54);
+            this.dataGridViewPlaylistSongs.Name = "dataGridViewPlaylistSongs";
+            this.dataGridViewPlaylistSongs.RowTemplate.Height = 25;
+            this.dataGridViewPlaylistSongs.Size = new System.Drawing.Size(462, 355);
+            this.dataGridViewPlaylistSongs.TabIndex = 12;
             // 
             // dataGridViewTextBoxColumn4
             // 
@@ -320,13 +339,19 @@
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.Width = 50;
             // 
+            // dataGridViewButtonColumn3
+            // 
+            this.dataGridViewButtonColumn3.HeaderText = "";
+            this.dataGridViewButtonColumn3.Name = "dataGridViewButtonColumn3";
+            this.dataGridViewButtonColumn3.Text = "";
+            this.dataGridViewButtonColumn3.UseColumnTextForButtonValue = true;
+            this.dataGridViewButtonColumn3.Width = 75;
+            // 
             // dataGridViewButtonColumn2
             // 
             this.dataGridViewButtonColumn2.HeaderText = "";
             this.dataGridViewButtonColumn2.Name = "dataGridViewButtonColumn2";
-            this.dataGridViewButtonColumn2.Text = "";
-            this.dataGridViewButtonColumn2.UseColumnTextForButtonValue = true;
-            this.dataGridViewButtonColumn2.Width = 75;
+            this.dataGridViewButtonColumn2.Text = "Удалить";
             // 
             // dataGridViewPlaylists
             // 
@@ -334,12 +359,15 @@
             this.dataGridViewPlaylists.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnName,
             this.ColumnSongsCount,
-            this.ColumnPlay});
+            this.ColumnPlay,
+            this.ColumnChange,
+            this.ColumnDelete});
             this.dataGridViewPlaylists.Location = new System.Drawing.Point(6, 54);
             this.dataGridViewPlaylists.Name = "dataGridViewPlaylists";
             this.dataGridViewPlaylists.RowTemplate.Height = 25;
-            this.dataGridViewPlaylists.Size = new System.Drawing.Size(343, 355);
+            this.dataGridViewPlaylists.Size = new System.Drawing.Size(469, 355);
             this.dataGridViewPlaylists.TabIndex = 0;
+            this.dataGridViewPlaylists.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPlaylists_CellContentClick);
             // 
             // ColumnName
             // 
@@ -357,34 +385,74 @@
             this.ColumnPlay.HeaderText = "";
             this.ColumnPlay.Name = "ColumnPlay";
             this.ColumnPlay.Text = "Играть";
+            this.ColumnPlay.UseColumnTextForButtonValue = true;
             this.ColumnPlay.Width = 75;
+            // 
+            // ColumnChange
+            // 
+            this.ColumnChange.FillWeight = 80F;
+            this.ColumnChange.HeaderText = "";
+            this.ColumnChange.Name = "ColumnChange";
+            this.ColumnChange.Text = "Изменить";
+            this.ColumnChange.UseColumnTextForButtonValue = true;
+            // 
+            // ColumnDelete
+            // 
+            this.ColumnDelete.FillWeight = 80F;
+            this.ColumnDelete.HeaderText = "";
+            this.ColumnDelete.Name = "ColumnDelete";
+            this.ColumnDelete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnDelete.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ColumnDelete.Text = "Удалить";
+            this.ColumnDelete.UseColumnTextForButtonValue = true;
             // 
             // tabPageAlbums
             // 
             this.tabPageAlbums.Location = new System.Drawing.Point(4, 24);
             this.tabPageAlbums.Name = "tabPageAlbums";
             this.tabPageAlbums.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAlbums.Size = new System.Drawing.Size(904, 416);
+            this.tabPageAlbums.Size = new System.Drawing.Size(995, 416);
             this.tabPageAlbums.TabIndex = 3;
             this.tabPageAlbums.Text = "Альбомы";
             this.tabPageAlbums.UseVisualStyleBackColor = true;
             // 
             // tabPageProfile
             // 
+            this.tabPageProfile.Controls.Add(this.button1);
+            this.tabPageProfile.Controls.Add(this.label1);
             this.tabPageProfile.Location = new System.Drawing.Point(4, 24);
             this.tabPageProfile.Name = "tabPageProfile";
             this.tabPageProfile.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageProfile.Size = new System.Drawing.Size(904, 416);
+            this.tabPageProfile.Size = new System.Drawing.Size(995, 416);
             this.tabPageProfile.TabIndex = 4;
             this.tabPageProfile.Text = "Профиль";
             this.tabPageProfile.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(122, 26);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(18, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 28);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "label1";
             // 
             // ListenerScreenForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.ClientSize = new System.Drawing.Size(948, 450);
+            this.ClientSize = new System.Drawing.Size(1030, 450);
             this.Controls.Add(this.tabControl1);
             this.Name = "ListenerScreenForm";
             this.Text = "ListenerScreen";
@@ -398,8 +466,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAllSongs)).EndInit();
             this.tabPagePlaylists.ResumeLayout(false);
             this.tabPagePlaylists.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlaylistSongs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlaylists)).EndInit();
+            this.tabPageProfile.ResumeLayout(false);
+            this.tabPageProfile.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -425,20 +495,26 @@
         private DataGridViewTextBoxColumn ColumnDuration;
         private DataGridViewButtonColumn ColumnButton;
         private DataGridView dataGridViewPlaylists;
-        private DataGridView dataGridView2;
-        private DataGridViewTextBoxColumn ColumnName;
-        private DataGridViewTextBoxColumn ColumnSongsCount;
-        private DataGridViewButtonColumn ColumnPlay;
+        private DataGridView dataGridViewPlaylistSongs;
         private Button buttonAddPlaylist;
         private Label labelYourPlaylists;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private DataGridViewButtonColumn dataGridViewButtonColumn2;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private DataGridViewButtonColumn dataGridViewButtonColumn1;
         private DataGridViewButtonColumn ColumnAdd;
+        private Button buttonAddSong;
+        private DataGridViewTextBoxColumn ColumnName;
+        private DataGridViewTextBoxColumn ColumnSongsCount;
+        private DataGridViewButtonColumn ColumnPlay;
+        private DataGridViewButtonColumn ColumnChange;
+        private DataGridViewButtonColumn ColumnDelete;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private DataGridViewButtonColumn dataGridViewButtonColumn3;
+        private DataGridViewButtonColumn dataGridViewButtonColumn2;
+        private Label label1;
+        private Button button1;
     }
 }

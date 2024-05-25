@@ -157,6 +157,10 @@ namespace UI
 
         private void buttonAddPlaylist_Click(object sender, EventArgs e)
         {
+            // add playlist
+            // will run dkialog form where user choose songs for playlist
+            // develop form
+
 
         }
 
@@ -176,6 +180,37 @@ namespace UI
                 string artists = GetArtistsString(song);
                 dataGridViewAllSongs.Rows.Add(song.Title, artists, song.Duration);
             }
+        }
+
+        private void dataGridViewPlaylists_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // play playlist btn
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                var playlistTitle = dataGridViewPlaylists.Rows[e.RowIndex].Cells[0].Value.ToString();
+                if (playlistTitle == null)
+                    return;
+                var songs = _service.GetSongsByPlaylist(_user.Id, playlistTitle);
+
+                
+                if (songs != null)
+                {
+                    dataGridViewPlaylistSongs.Rows.Clear();
+                    foreach (var song in songs)
+                    {
+                        string artists = GetArtistsString(song);
+                        dataGridViewPlaylistSongs.Rows.Add(song.Title, artists, song.Duration);
+                    }
+                }
+            }
+        }
+
+        private void buttonAddSong_Click(object sender, EventArgs e)
+        {
+            // create playlist
+            
         }
     }
 }
