@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace UI
 {
-    public partial class ArtistForm : Form
+    public partial class ArtistScreenForm : Form
     {
-        public ArtistForm()
+        public ArtistScreenForm()
         {
             InitializeComponent();
         }

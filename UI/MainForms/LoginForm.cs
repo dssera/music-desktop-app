@@ -15,6 +15,7 @@ namespace UI.MainForms
     public partial class LoginForm : Form
     {
         private Service _service;
+        
         public LoginForm()
         {
             InitializeComponent();
@@ -28,9 +29,13 @@ namespace UI.MainForms
                     User Id = postgres;
                     Password = 12345;");
         }
+        private void RunForm()
+        {
 
+        }
         private void buttonLogin_Click(object sender, EventArgs e)
         {
+
             string enteredLogin = textBoxLoginField.Text;
             string enteredPassword = textBoxPasswordField.Text;
 
@@ -39,12 +44,41 @@ namespace UI.MainForms
             else
             {
                 var user = _service.GetFullUserByLogin(_user.Login);
-                var form = new ListenerScreenForm(user);
-                //Visible = false;
-                //form.ShowDialog();
-                //Dispose();
+                if (user.RollId == 1)
+                {
+                    
+                }
+                else if (user.RollId == 2)
+                {
+                    var form = new ListenerScreenForm(user);
+                    Visible = false;
+                    form.ShowDialog();
+                    Visible = true;
+                    textBoxLoginField.Clear();
+                    textBoxPasswordField.Clear();
+                }
+                else if (user.RollId == 3)
+                {
+                    var form = new ArtistScreenForm();
+                    Visible = false;
+                    form.ShowDialog();
+                    Visible = true;
+                    textBoxLoginField.Clear();
+                    textBoxPasswordField.Clear();
+                }
+                else if (user.RollId == 4)
+                {
+
+                }
+
 
             }
+        }
+
+        private void buttonRegister_Click(object sender, EventArgs e)
+        {
+            var form = new RegisterForm();
+            form.ShowDialog();
         }
     }
 }

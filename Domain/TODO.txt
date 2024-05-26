@@ -25,16 +25,17 @@ LISTENER
 	2.ALL SONGS
 		allows duplicates in my songs (write thing in a service layer)
 	3.PLAYLISTS
-		buttons in playlist screen
-		add change playlist screen
+		search
+		buttons in playlist screen+
+		add change playlist screen+
 	4.ALBUMS
-		datagridview with all albums 
-		DGV with current album
+		datagridview with all albums +
+		DGV with current album+
 			user can add song from album and delete song
 		search
 	5.ACCOUNT
-		user info
-		связать формы
+		user info+
+		связать формы+
 		btn log out
 		user statistic
 

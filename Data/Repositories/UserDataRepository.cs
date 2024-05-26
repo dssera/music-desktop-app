@@ -56,13 +56,13 @@ namespace DAO.Repositories
 
             return success;
         }
-        public UserDataEntity? Get(long id)
+        public UserDataEntity? Get(long userId)
         {
             try
             {
                 using var dataSource = NpgsqlDataSource.Create(_connectionString);
-                using var command = dataSource.CreateCommand("SELECT id, user_id, email, full_name FROM public.users_data WHERE id = @id");
-                command.Parameters.AddWithValue("id", id);
+                using var command = dataSource.CreateCommand("SELECT id, user_id, email, full_name FROM public.users_data WHERE user_id = @UserId");
+                command.Parameters.AddWithValue("UserId", userId);
                 using var reader = command.ExecuteReader();
 
                 while (reader.Read())

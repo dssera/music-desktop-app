@@ -73,7 +73,7 @@ namespace UI
                     dataGridViewAllAlbums.Rows.Add(album.Title, artists, album.Plays);
                 }
             }
-            // account
+            // account tab
             labelUsername.Text = _user.Login;
             labelFullNameValue.Text = _user.FullName;
             labelEmailValue.Text = _user.Email;
@@ -323,6 +323,11 @@ namespace UI
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonLogOut_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

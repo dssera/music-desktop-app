@@ -15,7 +15,8 @@ namespace UI
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new ListenerScreenForm(new Domain.User(10, "test", "test", 2, "test", "test")));
+            // Application.Run(new ListenerScreenForm(new Domain.User(10, "test", "test", 2, "test", "test")));
+            Application.Run(new LoginForm());
             //Application.Run(new RegisterForm());
             //Application.Run(new FormPlaylistCreate(new Service(@"Host = localhost;
             //        Port = 5432;

@@ -38,7 +38,7 @@ namespace UI
             // ...
 
             _service.Register(login, password, fullName, email, roll);
-
+            Close();
         }
 
         private void label1_Click(object sender, EventArgs e)

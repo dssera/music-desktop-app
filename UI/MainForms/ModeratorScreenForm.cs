@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace UI
 {
-    public partial class ModeratorForm : Form
+    public partial class ModeratorScreenForm : Form
     {
-        public ModeratorForm()
+        public ModeratorScreenForm()
         {
             InitializeComponent();
         }

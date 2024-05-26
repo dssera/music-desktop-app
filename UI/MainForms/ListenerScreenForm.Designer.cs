@@ -75,12 +75,12 @@
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewButtonColumn4 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabPageProfile = new System.Windows.Forms.TabPage();
+            this.labelEmail = new System.Windows.Forms.Label();
+            this.labelFullName = new System.Windows.Forms.Label();
+            this.labelEmailValue = new System.Windows.Forms.Label();
+            this.labelFullNameValue = new System.Windows.Forms.Label();
             this.buttonLogOut = new System.Windows.Forms.Button();
             this.labelUsername = new System.Windows.Forms.Label();
-            this.labelFullNameValue = new System.Windows.Forms.Label();
-            this.labelEmailValue = new System.Windows.Forms.Label();
-            this.labelFullName = new System.Windows.Forms.Label();
-            this.labelEmail = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageYourSongs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUserSongs)).BeginInit();
@@ -521,44 +521,15 @@
             this.tabPageProfile.Text = "Профиль";
             this.tabPageProfile.UseVisualStyleBackColor = true;
             // 
-            // buttonLogOut
+            // labelEmail
             // 
-            this.buttonLogOut.Location = new System.Drawing.Point(817, 22);
-            this.buttonLogOut.Name = "buttonLogOut";
-            this.buttonLogOut.Size = new System.Drawing.Size(157, 23);
-            this.buttonLogOut.TabIndex = 1;
-            this.buttonLogOut.Text = "Выйти из аккаунта";
-            this.buttonLogOut.UseVisualStyleBackColor = true;
-            // 
-            // labelUsername
-            // 
-            this.labelUsername.AutoSize = true;
-            this.labelUsername.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelUsername.Location = new System.Drawing.Point(18, 17);
-            this.labelUsername.Name = "labelUsername";
-            this.labelUsername.Size = new System.Drawing.Size(99, 28);
-            this.labelUsername.TabIndex = 0;
-            this.labelUsername.Text = "Username";
-            // 
-            // labelFullNameValue
-            // 
-            this.labelFullNameValue.AutoSize = true;
-            this.labelFullNameValue.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelFullNameValue.Location = new System.Drawing.Point(129, 71);
-            this.labelFullNameValue.Name = "labelFullNameValue";
-            this.labelFullNameValue.Size = new System.Drawing.Size(77, 21);
-            this.labelFullNameValue.TabIndex = 2;
-            this.labelFullNameValue.Text = "FullName";
-            // 
-            // labelEmailValue
-            // 
-            this.labelEmailValue.AutoSize = true;
-            this.labelEmailValue.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelEmailValue.Location = new System.Drawing.Point(129, 108);
-            this.labelEmailValue.Name = "labelEmailValue";
-            this.labelEmailValue.Size = new System.Drawing.Size(48, 21);
-            this.labelEmailValue.TabIndex = 3;
-            this.labelEmailValue.Text = "Email";
+            this.labelEmail.AutoSize = true;
+            this.labelEmail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelEmail.Location = new System.Drawing.Point(20, 71);
+            this.labelEmail.Name = "labelEmail";
+            this.labelEmail.Size = new System.Drawing.Size(83, 21);
+            this.labelEmail.TabIndex = 5;
+            this.labelEmail.Text = "Ваше имя:";
             // 
             // labelFullName
             // 
@@ -571,15 +542,45 @@
             this.labelFullName.Text = "Ваша почта:";
             this.labelFullName.Click += new System.EventHandler(this.label1_Click);
             // 
-            // labelEmail
+            // labelEmailValue
             // 
-            this.labelEmail.AutoSize = true;
-            this.labelEmail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelEmail.Location = new System.Drawing.Point(20, 71);
-            this.labelEmail.Name = "labelEmail";
-            this.labelEmail.Size = new System.Drawing.Size(83, 21);
-            this.labelEmail.TabIndex = 5;
-            this.labelEmail.Text = "Ваше имя:";
+            this.labelEmailValue.AutoSize = true;
+            this.labelEmailValue.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelEmailValue.Location = new System.Drawing.Point(129, 108);
+            this.labelEmailValue.Name = "labelEmailValue";
+            this.labelEmailValue.Size = new System.Drawing.Size(48, 21);
+            this.labelEmailValue.TabIndex = 3;
+            this.labelEmailValue.Text = "Email";
+            // 
+            // labelFullNameValue
+            // 
+            this.labelFullNameValue.AutoSize = true;
+            this.labelFullNameValue.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelFullNameValue.Location = new System.Drawing.Point(129, 71);
+            this.labelFullNameValue.Name = "labelFullNameValue";
+            this.labelFullNameValue.Size = new System.Drawing.Size(77, 21);
+            this.labelFullNameValue.TabIndex = 2;
+            this.labelFullNameValue.Text = "FullName";
+            // 
+            // buttonLogOut
+            // 
+            this.buttonLogOut.Location = new System.Drawing.Point(817, 22);
+            this.buttonLogOut.Name = "buttonLogOut";
+            this.buttonLogOut.Size = new System.Drawing.Size(157, 23);
+            this.buttonLogOut.TabIndex = 1;
+            this.buttonLogOut.Text = "Выйти из аккаунта";
+            this.buttonLogOut.UseVisualStyleBackColor = true;
+            this.buttonLogOut.Click += new System.EventHandler(this.buttonLogOut_Click);
+            // 
+            // labelUsername
+            // 
+            this.labelUsername.AutoSize = true;
+            this.labelUsername.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelUsername.Location = new System.Drawing.Point(18, 17);
+            this.labelUsername.Name = "labelUsername";
+            this.labelUsername.Size = new System.Drawing.Size(99, 28);
+            this.labelUsername.TabIndex = 0;
+            this.labelUsername.Text = "Username";
             // 
             // ListenerScreenForm
             // 
