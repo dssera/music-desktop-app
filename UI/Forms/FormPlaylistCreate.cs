@@ -20,9 +20,27 @@ namespace UI.Forms
         private User _user;
         public FormPlaylistCreate(Service service, User user)
         {
+            InitializeComponent();
             _service = service;
             _user = user;
+        }
+        public FormPlaylistCreate(Service service, User user, string title)
+        {
             InitializeComponent();
+
+            _service = service;
+            _user = user;
+
+            labelCreatePlaylist.Text = "Измените плейлист:"; 
+            var songs = _service.GetSongsByPlaylist(_user.Id, title);
+            if (songs != null)
+            {
+                foreach (var song in songs)
+                {
+                    dataGridViewPlaylistSongs.Rows.Add(song.Title, GetArtistsString(song), song.Duration);
+                }
+            }
+            textBoxTitle.Text = title;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -82,6 +100,10 @@ namespace UI.Forms
         }
         private void button1_Click(object sender, EventArgs e)
         {
+            // если плейлист редактируется - значит нужно работать с уже сущетсв плейлистом
+            
+            // если плейлист создается то делать то что ниже
+
             var songs = new List<SongEntity>();
             string title = textBoxTitle.Text;
             if (!isTitleUnique(title))
@@ -89,8 +111,6 @@ namespace UI.Forms
                 MessageBox.Show("Плейлист с таким названием уже сущетсвует!");
                 return;
             }
-            
-
 
             foreach (DataGridViewRow row in dataGridViewPlaylistSongs.Rows)
             {
@@ -170,7 +190,28 @@ namespace UI.Forms
                 }
 
             }
-               
+        }
+
+        private void buttonSearchAllSongs_Click(object sender, EventArgs e)
+        {
+            dataGridViewAllSongs.Rows.Clear();
+            string q = textBoxSearchAllSongs.Text;
+            List<SongEntity>? songs = null;
+            if (q == null || q == "")
+                songs = _service.GetSongs(100);
+            else
+                songs = _service.GetSongs(q);
+            if (songs == null)
+                return;
+            foreach (var song in songs)
+            {
+                string artists = GetArtistsString(song);
+                dataGridViewAllSongs.Rows.Add(song.Title, artists, song.Duration);
+            }
+        }
+
+        private void dataGridViewPlaylistSongs_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }

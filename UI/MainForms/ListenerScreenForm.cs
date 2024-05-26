@@ -11,6 +11,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Forms;
 
 namespace UI
 {
@@ -21,13 +22,13 @@ namespace UI
 
         public ListenerScreenForm(User user)
         {
+            InitializeComponent();
             _service = new Service(@"Host = localhost;
                     Port = 5432;
                     Database = music-service-coursework;
                     User Id = postgres;
                     Password = 12345;");
             _user = user;
-            InitializeComponent();
         }
 
         private void ListenerScreenForm_Load(object sender, EventArgs e)
@@ -160,8 +161,8 @@ namespace UI
             // add playlist
             // will run dkialog form where user choose songs for playlist
             // develop form
-
-
+            var formPlaylistCreate = new FormPlaylistCreate(_service, _user);
+            formPlaylistCreate.ShowDialog();
         }
 
         private void buttonSearchAllSongs_Click(object sender, EventArgs e)
@@ -184,25 +185,55 @@ namespace UI
 
         private void dataGridViewPlaylists_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // play playlist btn
+           
             var senderGrid = (DataGridView)sender;
 
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
-                var playlistTitle = dataGridViewPlaylists.Rows[e.RowIndex].Cells[0].Value.ToString();
-                if (playlistTitle == null)
-                    return;
-                var songs = _service.GetSongsByPlaylist(_user.Id, playlistTitle);
+                if (e.ColumnIndex == 2)
+                {
+                    // play playlist btn
+                    MessageBox.Show("2");
+                    var playlistTitle = dataGridViewPlaylists.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    if (playlistTitle == null)
+                        return;
+                    var songs = _service.GetSongsByPlaylist(_user.Id, playlistTitle);
 
                 
-                if (songs != null)
-                {
-                    dataGridViewPlaylistSongs.Rows.Clear();
-                    foreach (var song in songs)
+                    if (songs != null)
                     {
-                        string artists = GetArtistsString(song);
-                        dataGridViewPlaylistSongs.Rows.Add(song.Title, artists, song.Duration);
+                        dataGridViewPlaylistSongs.Rows.Clear();
+                        foreach (var song in songs)
+                        {
+                            string artists = GetArtistsString(song);
+                            dataGridViewPlaylistSongs.Rows.Add(song.Title, artists, song.Duration);
+                        }
                     }
+                }
+                else if (e.ColumnIndex == 3)
+                {
+                    // cahnge palylist
+                    // new screen
+                    var playlistTitle = dataGridViewPlaylists.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    if (playlistTitle == null) 
+                        return;
+                    var playlist = _service.GetPlaylistByTitle(_user.Id, playlistTitle);
+                    if (playlist == null)
+                        return;
+                    var changePLaylistForm = new ChangePlaylistForm(_service, _user, playlist);
+                    changePLaylistForm.ShowDialog();
+                    
+                }
+                else if (e.ColumnIndex == 4)
+                {
+                    // delete playlist from table
+                    // delete palylist from db
+                    var playlistTitle = dataGridViewPlaylists.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    if (playlistTitle == null)
+                        return;
+                    var playlist = _service.GetPlaylistByTitle(_user.Id, playlistTitle);
+                    if (playlist == null)
+                        return;
                 }
             }
         }
@@ -211,6 +242,11 @@ namespace UI
         {
             // create playlist
             
+        }
+
+        private void tabPagePlaylists_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

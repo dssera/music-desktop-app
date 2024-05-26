@@ -94,6 +94,10 @@ namespace Domain.Services
         {
             return songsPlaylistsService.AddSongToPlaylist(songId, playlistId);
         }
+        public bool DeleteSongFromPlaylist(long songId, long palylistId)
+        {
+            return songsPlaylistsService.DeleteSongFromPlaylist(songId, palylistId);
+        }
         public PlaylistEntity? GetPlaylistByTitle(long userId, string title)
         {
             return playlistService.GetPlaylist(userId, title);

@@ -43,7 +43,7 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewButtonColumn3 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.buttonCreate = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
             this.labelCreatePlaylist = new System.Windows.Forms.Label();
             this.textBoxTitle = new System.Windows.Forms.TextBox();
             this.labelTitle = new System.Windows.Forms.Label();
@@ -112,6 +112,7 @@
             this.buttonSearchAllSongs.TabIndex = 15;
             this.buttonSearchAllSongs.Text = "Поиск";
             this.buttonSearchAllSongs.UseVisualStyleBackColor = true;
+            this.buttonSearchAllSongs.Click += new System.EventHandler(this.buttonSearchAllSongs_Click);
             // 
             // textBoxSearchAllSongs
             // 
@@ -143,6 +144,7 @@
             this.dataGridViewPlaylistSongs.RowTemplate.Height = 25;
             this.dataGridViewPlaylistSongs.Size = new System.Drawing.Size(369, 321);
             this.dataGridViewPlaylistSongs.TabIndex = 16;
+            this.dataGridViewPlaylistSongs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPlaylistSongs_CellContentClick);
             // 
             // dataGridViewTextBoxColumn4
             // 
@@ -168,15 +170,15 @@
             this.dataGridViewButtonColumn3.UseColumnTextForButtonValue = true;
             this.dataGridViewButtonColumn3.Width = 75;
             // 
-            // buttonCreate
+            // buttonSave
             // 
-            this.buttonCreate.Location = new System.Drawing.Point(859, 86);
-            this.buttonCreate.Name = "buttonCreate";
-            this.buttonCreate.Size = new System.Drawing.Size(185, 23);
-            this.buttonCreate.TabIndex = 17;
-            this.buttonCreate.Text = "Создать плейлист";
-            this.buttonCreate.UseVisualStyleBackColor = true;
-            this.buttonCreate.Click += new System.EventHandler(this.button1_Click);
+            this.buttonSave.Location = new System.Drawing.Point(859, 86);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(185, 23);
+            this.buttonSave.TabIndex = 17;
+            this.buttonSave.Text = "Сохранить плейлист";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.button1_Click);
             // 
             // labelCreatePlaylist
             // 
@@ -213,7 +215,7 @@
             this.Controls.Add(this.labelTitle);
             this.Controls.Add(this.textBoxTitle);
             this.Controls.Add(this.labelCreatePlaylist);
-            this.Controls.Add(this.buttonCreate);
+            this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.dataGridViewPlaylistSongs);
             this.Controls.Add(this.buttonSearchAllSongs);
             this.Controls.Add(this.textBoxSearchAllSongs);
@@ -240,7 +242,7 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private DataGridViewButtonColumn dataGridViewButtonColumn3;
-        private Button buttonCreate;
+        private Button buttonSave;
         private Label labelCreatePlaylist;
         private DataGridViewTextBoxColumn dataGridViewTextBoxTitle;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;

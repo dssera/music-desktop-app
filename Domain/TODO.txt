@@ -1,0 +1,79 @@
+﻿
+we need little services to store validations, auth things, and other logic in them
+
+we need a big APIService to merge these services (try to answer Where would you store logic with transcations? And you will decide to make the same solution)
+
+
+
+I replaced IRepositoryCRUD<SongEntity> _songRepository; with SongRepository _songRepository; because 
+I want to add more specific methods into repos. and service must know that his repo implement these specific methods
+and I can't put these methods in a separate interface 
+
+
+LITTLE THINGS
+1.В дефолтный плейлист одна и та же песня может быть добавлена много раз
+	Вынесити эту логику из UI в слой ниже
+	где добавлюятся песни в плейлисты
+2. songs_count++ when add new song
+3. Add and Change playlist SAME things on the SAME FORM
+4. Связать формы
+5. make search in services
+
+ROLLS:
+LISTENER
+	1.MY SONGS
+	2.ALL SONGS
+		allows duplicates in my songs (write thing in a service layer)
+	3.PLAYLISTS
+		buttons in playlist screen
+		add change playlist screen
+	4.ALBUMS
+		datagridview with all albums 
+		DGV with current album
+			user can add song from album and delete song
+		search
+	5.ACCOUNT
+		user info
+		связать формы
+		btn log out
+		user statistic
+
+ARTIST
+	1.MY SONGS (+add song)
+		dgv with artist's songs
+		btn add song
+	2.ALL SONGS
+		just all songs
+	3.MY ALBUMS
+		dgv with my albums
+		create album
+		delete album
+		change album
+		dgv current album
+	4.ALL ALBUMS just playable albums
+	4.ACCOUNT
+		user info
+		btn log out
+		user statistic
+MODERATOR
+	1.ALL SONGS
+		dgv all songs
+			delete btn
+			(un-)publish
+	2.ALBUMS
+		dgv all albums
+			delete btn
+		(optional) add (un-)publish btn
+	3.ACCOUNT
+		user info
+		btn log out
+		user statistic
+ADMINISTRATOR
+	1.ALL USERS
+		Create
+		Update 
+		Delete
+
+
+
+	

@@ -30,5 +30,9 @@ namespace Domain.Services
         {
             return _repository.AddSongToPlaylist(songId, playlistId);
         }
+        public bool DeleteSongFromPlaylist(long songId, long playlistId)
+        {
+            return _repository.DeleteSongFromPlaylist(songId, playlistId);
+        }
     }
 }
