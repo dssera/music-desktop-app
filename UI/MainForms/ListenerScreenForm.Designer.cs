@@ -63,6 +63,17 @@
             this.ColumnChange = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ColumnDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabPageAlbums = new System.Windows.Forms.TabPage();
+            this.labelAllAlbums = new System.Windows.Forms.Label();
+            this.dataGridViewAlbum = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewButtonColumn2 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewAllAlbums = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewButtonColumn4 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabPageProfile = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -74,6 +85,9 @@
             this.tabPagePlaylists.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlaylistSongs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlaylists)).BeginInit();
+            this.tabPageAlbums.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlbum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAllAlbums)).BeginInit();
             this.tabPageProfile.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -389,6 +403,9 @@
             // 
             // tabPageAlbums
             // 
+            this.tabPageAlbums.Controls.Add(this.labelAllAlbums);
+            this.tabPageAlbums.Controls.Add(this.dataGridViewAlbum);
+            this.tabPageAlbums.Controls.Add(this.dataGridViewAllAlbums);
             this.tabPageAlbums.Location = new System.Drawing.Point(4, 24);
             this.tabPageAlbums.Name = "tabPageAlbums";
             this.tabPageAlbums.Padding = new System.Windows.Forms.Padding(3);
@@ -396,6 +413,93 @@
             this.tabPageAlbums.TabIndex = 3;
             this.tabPageAlbums.Text = "Альбомы";
             this.tabPageAlbums.UseVisualStyleBackColor = true;
+            this.tabPageAlbums.Click += new System.EventHandler(this.tabPageAlbums_Click);
+            // 
+            // labelAllAlbums
+            // 
+            this.labelAllAlbums.AutoSize = true;
+            this.labelAllAlbums.Location = new System.Drawing.Point(6, 16);
+            this.labelAllAlbums.Name = "labelAllAlbums";
+            this.labelAllAlbums.Size = new System.Drawing.Size(83, 15);
+            this.labelAllAlbums.TabIndex = 17;
+            this.labelAllAlbums.Text = "Все альбомы:";
+            // 
+            // dataGridViewAlbum
+            // 
+            this.dataGridViewAlbum.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAlbum.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewButtonColumn2});
+            this.dataGridViewAlbum.Location = new System.Drawing.Point(393, 48);
+            this.dataGridViewAlbum.Name = "dataGridViewAlbum";
+            this.dataGridViewAlbum.RowTemplate.Height = 25;
+            this.dataGridViewAlbum.Size = new System.Drawing.Size(369, 355);
+            this.dataGridViewAlbum.TabIndex = 16;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "Column1";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.HeaderText = "Artist";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.HeaderText = "";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.Width = 50;
+            // 
+            // dataGridViewButtonColumn2
+            // 
+            this.dataGridViewButtonColumn2.HeaderText = "";
+            this.dataGridViewButtonColumn2.Name = "dataGridViewButtonColumn2";
+            this.dataGridViewButtonColumn2.Text = "Играть";
+            this.dataGridViewButtonColumn2.UseColumnTextForButtonValue = true;
+            this.dataGridViewButtonColumn2.Width = 75;
+            // 
+            // dataGridViewAllAlbums
+            // 
+            this.dataGridViewAllAlbums.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAllAlbums.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn10,
+            this.dataGridViewTextBoxColumn11,
+            this.dataGridViewTextBoxColumn12,
+            this.dataGridViewButtonColumn4});
+            this.dataGridViewAllAlbums.Location = new System.Drawing.Point(5, 48);
+            this.dataGridViewAllAlbums.Name = "dataGridViewAllAlbums";
+            this.dataGridViewAllAlbums.RowTemplate.Height = 25;
+            this.dataGridViewAllAlbums.Size = new System.Drawing.Size(372, 355);
+            this.dataGridViewAllAlbums.TabIndex = 15;
+            this.dataGridViewAllAlbums.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAllAlbums_CellContentClick);
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.HeaderText = "Исполнитель";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            this.dataGridViewTextBoxColumn12.HeaderText = "Кол-во";
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.Width = 50;
+            // 
+            // dataGridViewButtonColumn4
+            // 
+            this.dataGridViewButtonColumn4.HeaderText = "";
+            this.dataGridViewButtonColumn4.Name = "dataGridViewButtonColumn4";
+            this.dataGridViewButtonColumn4.Text = "Играть";
+            this.dataGridViewButtonColumn4.UseColumnTextForButtonValue = true;
+            this.dataGridViewButtonColumn4.Width = 75;
             // 
             // tabPageProfile
             // 
@@ -449,6 +553,10 @@
             this.tabPagePlaylists.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlaylistSongs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlaylists)).EndInit();
+            this.tabPageAlbums.ResumeLayout(false);
+            this.tabPageAlbums.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlbum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAllAlbums)).EndInit();
             this.tabPageProfile.ResumeLayout(false);
             this.tabPageProfile.PerformLayout();
             this.ResumeLayout(false);
@@ -495,5 +603,16 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private DataGridViewButtonColumn dataGridViewButtonColumn3;
+        private Label labelAllAlbums;
+        private DataGridView dataGridViewAlbum;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private DataGridViewButtonColumn dataGridViewButtonColumn2;
+        private DataGridView dataGridViewAllAlbums;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+        private DataGridViewButtonColumn dataGridViewButtonColumn4;
     }
 }

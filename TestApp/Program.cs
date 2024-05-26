@@ -6,11 +6,8 @@ string connectionString = @"Host = localhost;
             Database = music-service-coursework;
             User Id = postgres;
             Password = 12345;";
-var songRepository = new SongRepository(connectionString);
-var genreRepository = new GenreRepository(connectionString);
-var songGenreRepo = new SongsGenresRepository(connectionString);
-var userRepo = new UserRepository(connectionString);
-var rollRepo = new RollRepository(connectionString);
+var albumRepository = new AlbumRepository(connectionString);
+// albumRepository.Add(new AlbumEntity(-1, "yeee album", DateTime.Now, 0, 0));
 
 
 

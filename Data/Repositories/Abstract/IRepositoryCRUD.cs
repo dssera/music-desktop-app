@@ -12,7 +12,7 @@ namespace Data.Repositories.Abstract
     {
         List<T>? GetCollection(int limit, int offset);
         bool Add(T item);
-        T? GetById(long id);
+        T? Get(long id);
         bool Update(T item);
         bool Delete(long id);
     }

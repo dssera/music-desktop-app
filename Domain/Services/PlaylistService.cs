@@ -21,6 +21,13 @@ namespace Domain.Services
         {
             return _repository.Add(playlist);
         }
+        public bool Delete(long userId, string playlistTitle)
+        {
+            var playlist = GetPlaylist(userId, playlistTitle);
+            if (playlist == null)
+                return false;
+            return _repository.Delete(playlist.Id);
+        }
         public PlaylistEntity? GetPlaylist(long userId, string playlistTitle)
         {
             return _repository.Get(userId, playlistTitle);
@@ -29,5 +36,6 @@ namespace Domain.Services
         {
             return _repository.GetPlaylistsByUser(userId);
         }
+
     }
 }

@@ -50,7 +50,7 @@ namespace DAO.Repositories
             catch (Exception ex) { Console.WriteLine($"Exception in {GetType()}.Add:" + ex.Message); }
             return success;
         }
-        public GenreEntity? GetById(long id)
+        public GenreEntity? Get(long id)
         {
             try
             {

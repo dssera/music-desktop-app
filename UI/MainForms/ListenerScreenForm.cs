@@ -63,6 +63,16 @@ namespace UI
                     dataGridViewPlaylists.Rows.Add(playlist.Title, playlist.SongsCount);
                 }
             }
+            // album tab
+            var albums = _service.GetAllAlbums();
+            if (albums != null)
+            {
+                foreach (var album in albums)
+                {
+                    var artists = GetArtistsString(album);
+                    dataGridViewAllAlbums.Rows.Add(album.Title, artists, album.Plays);
+                }
+            }
         }
 
         private string GetArtistsString(SongEntity song)
@@ -72,6 +82,19 @@ namespace UI
             if (artistEntitites == null)
                 return "";
             foreach (var artistEntity in artistEntitites) 
+            {
+                artists.Add(artistEntity.Login);
+            }
+            return string.Join(", ", artists);
+        }
+        private string GetArtistsString(AlbumEntity album)
+        {
+            // ...
+            var artists = new List<string>();
+            var artistEntitites = _service.GetArtistsByAlbum(album.Id);
+            if (artistEntitites == null)
+                return "";
+            foreach (var artistEntity in artistEntitites)
             {
                 artists.Add(artistEntity.Login);
             }
@@ -234,6 +257,17 @@ namespace UI
                     var playlist = _service.GetPlaylistByTitle(_user.Id, playlistTitle);
                     if (playlist == null)
                         return;
+                    foreach (DataGridViewRow row in dataGridViewPlaylists.Rows)
+                    {
+                        if (row.Cells[0].Value != null && row.Cells[0].Value.ToString() == playlistTitle)
+                        {
+                            dataGridViewPlaylists.Rows.Remove(row);
+                            break;
+                        }
+                    }
+                    _service.DeletePlaylist(_user.Id, playlistTitle);
+
+
                 }
             }
         }
@@ -245,6 +279,39 @@ namespace UI
         }
 
         private void tabPagePlaylists_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridViewAllAlbums_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                if (e.ColumnIndex == 3)
+                {
+                    // play album btn
+                    var albumTitle = dataGridViewAllAlbums.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    if (albumTitle == null)
+                        return;
+                    var songs = _service.GetSongsByAlbum(albumTitle);
+
+                    if (songs != null)
+                    {
+                        dataGridViewAlbum.Rows.Clear();
+                        foreach (var song in songs)
+                        {
+                            string artists = GetArtistsString(song);
+                            dataGridViewAlbum.Rows.Add(song.Title, artists, song.Duration);
+                        }
+                    }
+                }
+                
+            }
+        }
+
+        private void tabPageAlbums_Click(object sender, EventArgs e)
         {
 
         }

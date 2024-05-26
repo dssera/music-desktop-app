@@ -57,7 +57,7 @@ namespace DAO.Repositories
 
             return success;
         }
-        public PlaylistEntity? GetById(long id)
+        public PlaylistEntity? Get(long id)
         {
             try
             {

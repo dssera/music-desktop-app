@@ -24,7 +24,7 @@ namespace Domain.Services
         }
         public UserDataEntity? GetById(long id)
         {
-            return _repository.GetById(id);
+            return _repository.Get(id);
         }
     }
 }

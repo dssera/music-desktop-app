@@ -42,7 +42,7 @@ ARTIST
 	1.MY SONGS (+add song)
 		dgv with artist's songs
 		btn add song
-	2.ALL SONGS
+	2.ALL SONGS9
 		just all songs
 	3.MY ALBUMS
 		dgv with my albums

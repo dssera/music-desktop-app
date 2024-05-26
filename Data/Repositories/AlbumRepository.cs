@@ -56,7 +56,7 @@ namespace DAO.Repositories
 
             return success;
         }
-        public AlbumEntity? GetById(long id)
+        public AlbumEntity? Get(long id)
         {
             try
             {
@@ -75,10 +75,34 @@ namespace DAO.Repositories
                         );
                 }
             }
-            catch (Exception ex) { Console.WriteLine($"Exception in {GetType()}.GetById:" + ex.Message); }
+            catch (Exception ex) { Console.WriteLine($"Exception in {GetType()}.Get:" + ex.Message); }
 
             return null;
         }
+        public AlbumEntity? Get(string title)
+        {
+            try
+            {
+                using var dataSource = NpgsqlDataSource.Create(_connectionString);
+                using var command = dataSource.CreateCommand("SELECT id, title, created, plays, songs_count FROM public.albums WHERE title = @Title");
+                command.Parameters.AddWithValue("Title", title);
+                using var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    return new AlbumEntity(reader.GetInt64(0),
+                        reader.GetString(1),
+                        reader.GetDateTime(2),
+                        reader.GetInt64(3),
+                        reader.GetInt32(4)
+                        );
+                }
+            }
+            catch (Exception ex) { Console.WriteLine($"Exception in {GetType()}.Get:" + ex.Message); }
+
+            return null;
+        }
+
 
         public List<AlbumEntity>? GetCollection(int limit = 15, int offset = 0)
         {
@@ -97,9 +121,9 @@ namespace DAO.Repositories
                     {
                         albumsList.Add(new AlbumEntity(reader.GetInt64(0),
                             reader.GetString(1),
-                            reader.GetDateTime(3),
-                            reader.GetInt64(4),
-                            reader.GetInt32(5))
+                            reader.GetDateTime(2),
+                            reader.GetInt64(3),
+                            reader.GetInt32(4))
                             );
                     }
                 }

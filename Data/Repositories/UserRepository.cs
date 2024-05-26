@@ -55,7 +55,7 @@ namespace DAO.Repositories
 
             return success;
         }
-        public UserEntity? GetById(long id)
+        public UserEntity? Get(long id)
         {
             try
             {

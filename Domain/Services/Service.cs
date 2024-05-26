@@ -4,19 +4,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Domain.Services
 {
     public class Service
     {
-        private UserService userService;
-        private UserDataService userDataService;
-        private RollService rollService;
-        private SongService songService;
-        private SongsArtistsService songsArtistsService;
-        private PlaylistService playlistService;
-        private SongsPlaylistsService songsPlaylistsService;
+        UserService userService;
+        UserDataService userDataService;
+        RollService rollService;
+        SongService songService;
+        SongsArtistsService songsArtistsService;
+        PlaylistService playlistService;
+        SongsPlaylistsService songsPlaylistsService;
+        AlbumService albumService;
+        AlbumsArtistsService albumsArtistsService;
 
 
         public Service(string connectionString)
@@ -28,7 +31,8 @@ namespace Domain.Services
             songsArtistsService = new SongsArtistsService(connectionString);
             playlistService = new PlaylistService(connectionString);
             songsPlaylistsService = new SongsPlaylistsService(connectionString);
-
+            albumsArtistsService = new AlbumsArtistsService(connectionString);
+            albumService = new AlbumService(connectionString);
         }
 
         public UserEntity? Register(string login, string password, string? fullName, string? email, int rollId)
@@ -109,6 +113,40 @@ namespace Domain.Services
         public bool AddPlaylist(PlaylistEntity playlist)
         {
             return playlistService.Add(playlist);
+        }
+        public bool DeletePlaylist(long userId, string title)
+        {
+            return playlistService.Delete(userId, title);
+        }
+        public List<AlbumEntity>? GetAlbumsByUser(long userId)
+        {
+            return albumsArtistsService.GetAlbumsByArtist(userId);
+        }
+        public List<AlbumEntity>? GetAllAlbums()
+        {
+            return albumService.GetAlbums(100);
+        }
+        public List<UserEntity>? GetArtistsByAlbum(long id)
+        {
+            return albumsArtistsService.GetArtistsByAlbum(id);
+        }
+        public List<SongEntity>? GetSongsByAlbum(string title)
+        {
+            var songs = songService.GetSongs(1000);
+            if (songs == null)
+                return null;
+            var album = albumService.GetAlbumByTitle(title);
+            if (album == null)
+                return null;
+            var songsFromAlbum = new List<SongEntity>();
+            foreach (var song in songs)
+            {
+                if (song.AlbumId == album.Id)
+                {
+                    songsFromAlbum.Add(song);
+                }
+            }
+            return songsFromAlbum;
         }
     }
 }

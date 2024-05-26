@@ -50,7 +50,7 @@ namespace DAO.Repositories
             catch (Exception ex) { Console.WriteLine($"Exception in {GetType()}.Add:" + ex.Message); }
             return success;
         }
-        public RollEntity? GetById(long id)
+        public RollEntity? Get(long id)
         {
             try
             {
