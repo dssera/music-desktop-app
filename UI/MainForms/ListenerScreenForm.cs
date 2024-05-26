@@ -73,6 +73,10 @@ namespace UI
                     dataGridViewAllAlbums.Rows.Add(album.Title, artists, album.Plays);
                 }
             }
+            // account
+            labelUsername.Text = _user.Login;
+            labelFullNameValue.Text = _user.FullName;
+            labelEmailValue.Text = _user.Email;
         }
 
         private string GetArtistsString(SongEntity song)
@@ -312,6 +316,11 @@ namespace UI
         }
 
         private void tabPageAlbums_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

@@ -75,8 +75,12 @@
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewButtonColumn4 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabPageProfile = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.buttonLogOut = new System.Windows.Forms.Button();
+            this.labelUsername = new System.Windows.Forms.Label();
+            this.labelFullNameValue = new System.Windows.Forms.Label();
+            this.labelEmailValue = new System.Windows.Forms.Label();
+            this.labelFullName = new System.Windows.Forms.Label();
+            this.labelEmail = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageYourSongs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUserSongs)).BeginInit();
@@ -503,8 +507,12 @@
             // 
             // tabPageProfile
             // 
-            this.tabPageProfile.Controls.Add(this.button1);
-            this.tabPageProfile.Controls.Add(this.label1);
+            this.tabPageProfile.Controls.Add(this.labelEmail);
+            this.tabPageProfile.Controls.Add(this.labelFullName);
+            this.tabPageProfile.Controls.Add(this.labelEmailValue);
+            this.tabPageProfile.Controls.Add(this.labelFullNameValue);
+            this.tabPageProfile.Controls.Add(this.buttonLogOut);
+            this.tabPageProfile.Controls.Add(this.labelUsername);
             this.tabPageProfile.Location = new System.Drawing.Point(4, 24);
             this.tabPageProfile.Name = "tabPageProfile";
             this.tabPageProfile.Padding = new System.Windows.Forms.Padding(3);
@@ -513,24 +521,65 @@
             this.tabPageProfile.Text = "Профиль";
             this.tabPageProfile.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // buttonLogOut
             // 
-            this.button1.Location = new System.Drawing.Point(122, 26);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonLogOut.Location = new System.Drawing.Point(817, 22);
+            this.buttonLogOut.Name = "buttonLogOut";
+            this.buttonLogOut.Size = new System.Drawing.Size(157, 23);
+            this.buttonLogOut.TabIndex = 1;
+            this.buttonLogOut.Text = "Выйти из аккаунта";
+            this.buttonLogOut.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // labelUsername
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(18, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 28);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.labelUsername.AutoSize = true;
+            this.labelUsername.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelUsername.Location = new System.Drawing.Point(18, 17);
+            this.labelUsername.Name = "labelUsername";
+            this.labelUsername.Size = new System.Drawing.Size(99, 28);
+            this.labelUsername.TabIndex = 0;
+            this.labelUsername.Text = "Username";
+            // 
+            // labelFullNameValue
+            // 
+            this.labelFullNameValue.AutoSize = true;
+            this.labelFullNameValue.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelFullNameValue.Location = new System.Drawing.Point(129, 71);
+            this.labelFullNameValue.Name = "labelFullNameValue";
+            this.labelFullNameValue.Size = new System.Drawing.Size(77, 21);
+            this.labelFullNameValue.TabIndex = 2;
+            this.labelFullNameValue.Text = "FullName";
+            // 
+            // labelEmailValue
+            // 
+            this.labelEmailValue.AutoSize = true;
+            this.labelEmailValue.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelEmailValue.Location = new System.Drawing.Point(129, 108);
+            this.labelEmailValue.Name = "labelEmailValue";
+            this.labelEmailValue.Size = new System.Drawing.Size(48, 21);
+            this.labelEmailValue.TabIndex = 3;
+            this.labelEmailValue.Text = "Email";
+            // 
+            // labelFullName
+            // 
+            this.labelFullName.AutoSize = true;
+            this.labelFullName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelFullName.Location = new System.Drawing.Point(20, 108);
+            this.labelFullName.Name = "labelFullName";
+            this.labelFullName.Size = new System.Drawing.Size(97, 21);
+            this.labelFullName.TabIndex = 4;
+            this.labelFullName.Text = "Ваша почта:";
+            this.labelFullName.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // labelEmail
+            // 
+            this.labelEmail.AutoSize = true;
+            this.labelEmail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelEmail.Location = new System.Drawing.Point(20, 71);
+            this.labelEmail.Name = "labelEmail";
+            this.labelEmail.Size = new System.Drawing.Size(83, 21);
+            this.labelEmail.TabIndex = 5;
+            this.labelEmail.Text = "Ваше имя:";
             // 
             // ListenerScreenForm
             // 
@@ -597,8 +646,8 @@
         private DataGridViewButtonColumn ColumnPlay;
         private DataGridViewButtonColumn ColumnChange;
         private DataGridViewButtonColumn ColumnDelete;
-        private Label label1;
-        private Button button1;
+        private Label labelUsername;
+        private Button buttonLogOut;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
@@ -614,5 +663,9 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private DataGridViewButtonColumn dataGridViewButtonColumn4;
+        private Label labelFullNameValue;
+        private Label labelEmailValue;
+        private Label labelFullName;
+        private Label labelEmail;
     }
 }
