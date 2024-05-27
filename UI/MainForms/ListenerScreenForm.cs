@@ -33,7 +33,6 @@ namespace UI
 
         private void ListenerScreenForm_Load(object sender, EventArgs e)
         {
-
             // your songs tab
             var userSongs = _service.GetSongsByPlaylist(_user.Id, "default_playlist");
             if (userSongs != null)
@@ -60,7 +59,8 @@ namespace UI
             {
                 foreach (var playlist in playlists)
                 {
-                    dataGridViewPlaylists.Rows.Add(playlist.Title, playlist.SongsCount);
+                    if (playlist.Title != "default_playlist")
+                        dataGridViewPlaylists.Rows.Add(playlist.Title, playlist.SongsCount);
                 }
             }
             // album tab
@@ -119,7 +119,6 @@ namespace UI
 
         private void tabPage1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("sdsd");
         }
 
         private void dataGridViewUserSongs_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -217,10 +216,9 @@ namespace UI
 
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
-                if (e.ColumnIndex == 2)
+                if (e.ColumnIndex == 3)
                 {
                     // play playlist btn
-                    MessageBox.Show("2");
                     var playlistTitle = dataGridViewPlaylists.Rows[e.RowIndex].Cells[0].Value.ToString();
                     if (playlistTitle == null)
                         return;
@@ -237,7 +235,7 @@ namespace UI
                         }
                     }
                 }
-                else if (e.ColumnIndex == 3)
+                else if (e.ColumnIndex == 4)
                 {
                     // cahnge palylist
                     // new screen
@@ -251,7 +249,7 @@ namespace UI
                     changePLaylistForm.ShowDialog();
                     
                 }
-                else if (e.ColumnIndex == 4)
+                else if (e.ColumnIndex == 5)
                 {
                     // delete playlist from table
                     // delete palylist from db
@@ -328,6 +326,11 @@ namespace UI
         private void buttonLogOut_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void dataGridViewAlbumSongs_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

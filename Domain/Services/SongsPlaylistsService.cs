@@ -28,6 +28,10 @@ namespace Domain.Services
 
         public bool AddSongToPlaylist(long songId, long playlistId)
         {
+            var songs = GetSongsByPlaylist(playlistId);
+            foreach (var song in songs)
+                if (song.Id == songId) 
+                    return false;
             return _repository.AddSongToPlaylist(songId, playlistId);
         }
         public bool DeleteSongFromPlaylist(long songId, long playlistId)

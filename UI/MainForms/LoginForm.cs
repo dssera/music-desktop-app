@@ -59,7 +59,7 @@ namespace UI.MainForms
                 }
                 else if (user.RollId == 3)
                 {
-                    var form = new ArtistScreenForm();
+                    var form = new ArtistScreenForm(user);
                     Visible = false;
                     form.ShowDialog();
                     Visible = true;

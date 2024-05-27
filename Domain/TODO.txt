@@ -43,10 +43,10 @@ ARTIST
 	1.MY SONGS (+add song)
 		dgv with artist's songs
 		btn add song
-	2.ALL SONGS9
+	2.ALL SONGS9 playable
 		just all songs
 	3.MY ALBUMS
-		dgv with my albums
+		dgv with my albums 
 		create album
 		delete album
 		change album
